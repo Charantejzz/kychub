@@ -1,0 +1,80 @@
+.custom-btn{
+    width: 150px;
+    height: 35px;
+    margin-left: 8px;
+    border: none;
+    border-radius: 3px;
+    font-size: medium;
+}
+.active{
+    background-color:white;
+}
+hr.solid {
+    height:2px;
+    border-width:0;
+    color:black;background-color:black;
+    
+  }
+.container-fluid{
+    background: #e9e9e9;
+    display: block;
+    width: 100%;
+    z-index: 0;
+    height: 100%; 
+    overflow: scroll;
+}
+.main {
+    margin-left: 220px;
+    height: 100%; /* Same as the width of the sidenav */
+  }
+.containerPanel{
+   margin-left: 30px;
+   background: #fff;
+   padding: 25px;
+   margin-top: 10px;
+   width:870px;
+   box-shadow: 0 8px 8px -4px #b2beb5;
+}
+.centerbutton{
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ 
+}
+.smallfield{
+    height:30px;
+    width: 350px;
+    background-color:#e9e9e9; 
+    opacity: 25%;
+    border: none;
+}
+
+option{
+    height:30px;
+}
+.row-md-2{
+    margin-top: 20px;
+    
+}
+.searchtable{
+    margin-top: 30px;
+}
+.High{
+    color:red;
+}
+.Low{
+    color:green
+}
+.required:after {
+    content:" *";
+    color: red;
+  }
+  :host ::ng-deep .tablerow {
+    background-color: rgba(0,0,0,.15) !important;
+}
+:host ::ng-deep .p-datatable table {
+    border-collapse: separate;
+    border-spacing:0 5px;
+}
+

@@ -1,0 +1,204 @@
+<div class="container-fluid">
+    <div class="main">
+        <form>
+        <div class="form-group row">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 " style="margin-top:30px; margin-left: 30px;">
+                <h3>CUSTOMER ONBOARDING</h3>
+            </div>
+        </div>
+            <div class="form-group row" style="margin-left: 15px;">
+                <div class="col-md-9">
+                <button type="button" class="custom-btn active">Entity Search</button>
+                <button type="button" class="custom-btn">AML Search List</button>
+                <button type="button" class="custom-btn">Onboarding List</button>
+               </div>
+            </div>
+            <div class="form-group row" style="margin-top:10px;margin-left: 25px;">
+                <div class="col-md-12 row">
+                    <div class="col-sm-2" style="margin-top: 3px;">
+                        <h4>Perform Search </h4>
+                    </div>
+                    <div class="col-sm-8" style="float: left">
+                        <hr class="solid">
+                    </div>     
+                </div>  
+            </div>
+            <div class="containerPanel">
+                <div >
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <input type="radio" id="individual" (click)="changeOption()" name="search_type" value="individual" [(ngModel)]="searchOption">
+                            <label style="margin-left: 5px;" for="individual">Individual</label>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="radio" id="legal_entity" (click)="changeOption()" name="search_type" value="legal_entity" [(ngModel)]="searchOption">
+                            <label style="margin-left: 5px;" for="legal_entity">Legal Entity</label>
+                        </div>
+                       
+                </div>
+                <div *ngIf="searchOption==='individual'">
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <div class="row-md-2">
+                                <label class="required" for="fname">First name</label>
+                            </div>
+                            <div class="row-md-4">
+                                <input type="text" [(ngModel)]="individual.fname" placeholder="Type in your first name" class="form-control smallfield" id="fname" name="fname">
+                            </div>
+                            <div class="row-md-2">
+                                <label for="country">Country</label>
+                            </div>
+                            <div class="row-md-4">
+                                <select class="form-control responsive-select smallfield"
+                                name="country" [(ngModel)]="individual.country">
+                                    <option [ngValue]="undefined" selected ></option>
+                                    <option class="option" *ngFor="let country of countries"
+                                    [selected]="country" [value]="country">
+                                    {{country}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row-md-2">
+                                <label for="lname">Last name</label>
+                            </div>
+                            <div class="row-md-4">
+                                <input [(ngModel)]="individual.lname"placeholder="Type in your last name" class="form-control smallfield" type="text" id="lname" name="lname">
+                            </div>
+                            <div class="row-md-2">
+                                <label for="dob" id="dob" name="dob">Date of Birth</label>
+                            </div>
+                            <div class="row-md-4">
+                                <input [(ngModel)]="individual.dob" id="dob" name="dob" type="date" class="form-control smallfield">
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div *ngIf="searchOption==='legal_entity'">
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <div class="row-md-2">
+                                <label for="cname">Company name</label>
+                            </div>
+                            <div class="row-md-4">
+                                <input type="text" [(ngModel)]="legalEntity.cname" placeholder="Type in your company name"class="form-control smallfield" id="cname" name="cname">
+                            </div>
+                            <div class="row-md-2">
+                                <label for="country">Country</label>
+                            </div>
+                            <div class="row-md-4">
+                                <select [(ngModel)]="legalEntity.country" class="form-control responsive-select smallfield"
+                                name="country">
+                                    <option [ngValue]="undefined" selected ></option>
+                                    <option class="option" *ngFor="let country of countries"
+                                    [selected]="country" [value]="country">
+                                    {{country}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row-md-2">
+                                <label for="cid">Company ID</label>
+                            </div>
+                            <div class="row-md-3">
+                                <input [(ngModel)]="legalEntity.cid" type="text" placeholder="Type in your Company ID" class="form-control smallfield" id="cid" name="cid">
+                            </div>
+                            <div class="row-md-2">
+                                <label for="jur" id="jur" name="jur">Jurisdiction</label>
+                            </div>
+                            <div class="row-md-4">
+                                <select [(ngModel)]="legalEntity.jurisdiction" class="form-control responsive-select smallfield"
+                                name="jurisdiction">
+                                <option [ngValue]="undefined" selected ></option>
+                                    <option class="option" *ngFor="let option of jurisdictions"
+                                    [selected]="option" [value]="option">
+                                    {{option}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                       
+           </div>
+                             
+                <div class="form-group row-md-3 centerbutton">
+                    <button type="button" (click)="search()" class="btn btn-primary">Search</button>
+                </div>
+            </div>
+        </form>
+
+        <div *ngIf="dataLoaded" class="searchtable">
+            <div class="form-group row" style="margin-top:10px;margin-left: 25px;">
+                <div class="col-md-12 row">
+                    <div class="col-sm-2" style="margin-top: 3px;">
+                        <h4>Search Results </h4>
+                    </div>
+                    <div class="col-sm-8" style="float: left">
+                        <hr class="solid">
+                    </div>     
+                </div> 
+            </div>
+            <div *ngIf="indiviresults" style="margin-left: 25px;" class="row">
+             <p-table #datatable1 [value]="searchResults"  [scrollable]="true" scrollHeight="200px"  [rows]="10"
+             [rowsPerPageOptions]="[10,25,50]" responsiveLayout="scroll">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
+                        <th pSortableColumn="category">Category  <p-sortIcon field="category"></p-sortIcon></th>
+                        <th pSortableColumn="country">Country <p-sortIcon field="country"></p-sortIcon></th>
+                        <th pSortableColumn="source">Source <p-sortIcon field="source"></p-sortIcon></th>
+                        <th pSortableColumn="riskStatus">Risk Status <p-sortIcon field="riskStatus"></p-sortIcon></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" class="table"  let-rowData>
+                    <tr class="tablerow">
+                        <td>{{rowData.name}}</td>
+                        <td>{{rowData.category}}</td>
+                        <td>{{rowData.country}}</td>
+                        <td>{{rowData.source}}</td>
+                        <td>
+                            <span [class]="{'High':rowData.riskStatus=='International','Low':rowData.riskStatus=='National'}">{{rowData.riskStatus}}</span>   
+                        </td>
+                    </tr>
+                </ng-template>
+             </p-table>
+            </div>
+             <div *ngIf="companyresults"  sortMode="multiple" style="margin-left: 25px;" class="row">
+                <p-table #datatable2 [value]="searchResults" [scrollable]="true" scrollHeight="200px"  [rows]="10"
+                [rowsPerPageOptions]="[10,25,50]" responsiveLayout="scroll">
+                   <ng-template pTemplate="header">
+                       <tr>
+                           <th pSortableColumn="cname">Company Name <p-sortIcon field="cname"></p-sortIcon></th>
+                           <th pSortableColumn="ctype">Company Type <p-sortIcon field="ctype"></p-sortIcon></th>
+                           <th pSortableColumn="cId">Company ID <p-sortIcon field="cId"></p-sortIcon></th>
+                           <th pSortableColumn="incorDate">Incorporation Date <p-sortIcon field="incorDate"></p-sortIcon></th>
+                           <th pSortableColumn="country">Country <p-sortIcon field="country"></p-sortIcon></th>
+                           <th pSortableColumn="riskStatus">Risk Status <p-sortIcon field="riskStatus"></p-sortIcon></th>
+                       </tr>
+                   </ng-template>
+                   <ng-template pTemplate="body" class="table" let-rowData>
+                       <tr class="tablerow">
+                           <td>{{rowData.cname}}</td>
+                           <td>{{rowData.ctype}}</td>
+                           <td>{{rowData.cId}}</td>
+                           <td>{{rowData.incorDate}}</td>
+                           <td>{{rowData.country}}</td>
+                           <td>
+                            <span [class]="'status-'+ rowData.riskStatus">{{rowData.riskStatus}}</span>
+                           </td>
+                       </tr>
+                   </ng-template>
+                </p-table>
+             </div>  
+        </div>
+        
+
+    </div>
+
+</div>
+

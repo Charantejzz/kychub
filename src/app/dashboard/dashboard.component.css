@@ -1,0 +1,58 @@
+.sidenav {
+    height: 100%;
+    width: 220px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color:white;
+    overflow-x: hidden;
+    padding-top: 20px;
+    transition: all 0.5s ease;
+  }
+  .wrapper .sidenav .logo{
+    margin-bottom: 30px;
+    text-align: center;
+}
+.wrapper .sidenav .logo img{
+    display: block;
+    width: 80px;
+    height: 60px;
+    margin: 0 auto;
+}
+.wrapper .sidenav ul li a{
+    display: block;
+    padding: 13px 30px;
+    font-size: 16px;
+    position: relative;
+}
+
+.wrapper .sidenav ul li a .icon{
+    width: 30px;
+    display: inline-block;
+}
+.wrapper .sidenav ul li a .item{
+    color: black;
+}
+
+.wrapper .sidenav ul li a:hover,
+.wrapper .sidenav ul li a.active{
+    background: #6ec1e7;
+}
+
+
+.wrapper .sidenav ul li a:hover:before,
+.wrapper .sidenav ul li a.active:before{
+    display: block;
+}
+  *{
+    list-style: none;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.lasticon{
+    margin-top: 150px;
+}
